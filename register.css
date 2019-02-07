@@ -1,0 +1,110 @@
+html, body {
+	
+	height: 100%;
+	margin: 0;
+
+}
+
+body {
+
+	background-color: rgb(240, 240, 240) !important;
+
+}
+
+#info {
+
+	display: none !important;
+	width: auto !important;
+	border-radius: 10px !important;
+	margin-right: 2rem;
+
+}
+
+td {
+
+	padding: 0.5rem 1rem;
+	border: 1px solid #ced4da;
+	font-size: 1rem;
+	text-align: center;
+
+}
+
+tr:first-child td:first-child {
+
+	padding: 0.5rem 1rem;
+	font-size: 1.5rem;
+	font-weight: bold;
+	border-left: none;
+	border-top: none;
+	border-bottom: none;
+
+}
+
+tr:first-child td:nth-child(2) {
+
+	border-top: none;
+
+}
+
+tr:first-child td:last-child {
+
+	border-top: none;
+	border-right: none;
+
+}
+
+tr:last-child td:first-child {
+
+	border-bottom: none;
+
+}
+
+tr:last-child td:last-child {
+
+	border-bottom: none;
+	border-right: none;
+
+}
+
+#teamconfirm {
+
+	display: none !important;
+
+}
+
+hr.signin {
+
+	opacity: 0;
+
+}
+
+form.signin {
+
+	display: none !important;
+
+}
+
+form.signin .form-control, form.verify .form-control {
+
+	width: auto !important;
+
+}
+
+.invalid {
+
+	display: block !important;
+
+}
+
+hr.verify {
+
+	opacity: 0;
+
+}
+
+div.verify {
+
+	display: none !important;
+	width: 100%;
+
+}

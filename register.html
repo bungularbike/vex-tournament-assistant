@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VEX Tournament Assistant</title>
+	<link href = "register.css" type = "text/css" rel = "stylesheet">
+	<link href = "resources/bootstrap/css/bootstrap.min.css" type = "text/css" rel = "stylesheet">
+</head>
+<body>
+	<nav class = "navbar sticky-top navbar-light bg-light navbar-expand">
+		<span class = "navbar-brand mb-0 h1">VEX Tournament Assistant</span>
+		<div class = "collapse navbar-collapse">
+			<ul class = "navbar-nav mr-auto">
+				<li class = "nav-item active">
+					<a class = "nav-link" href = "#">Register</a>
+				</li>
+				<li class = "nav-item">
+					<a class = "nav-link" href = "quickscout.html">Quick Scout</a>
+				</li>
+			</ul>
+			<a class = "btn btn-outline-primary" href = "index.html">Login</a>
+		</div>
+	</nav>
+	<div class = "container-fluid p-5">
+		<p><strong>Welcome to VEX Tournament Assistant!</strong></p>
+		<p>VEX Tournament Assistant is a scouting helper for VEX Robotics Competition (VRC) tournaments. It can let you take notes on teams at your events, predict the outcome of matches, and compile data across multiple competitions a team has attended.</p>
+		<p>VEX Tournament Assistant is developed by Team 936A from Hong Kong International School. We will <u>never</u> access your data (including your e-mail address and team notes) and/or transfer it to other parties.</p>
+		<p><small>VRC is owned by VEX Robotics, which is owned by Innovation First International. All data compiled by VEX Tournament Assistant is from the publicly accessible <a href = "https://vexdb.io/the_data" target = "_blank">VexDB API</a>.</small></p>
+		<hr>
+		<p>First, we need your team number. Providing your team number does not mean that anyone else with your team number can access your account (multiple accounts can share the same team number). Your team number will help us determine which events your team is attending.</p>
+		<form id = "teamsearch" class = "form-inline" autocomplete = "off">
+			Enter your team number here: <input type = "text" id = "team" class = "form-control form-control-sm mx-2" placeholder = "e.g. 936A">
+			<button id = "search" class = "btn btn-outline-dark btn-sm">Continue</button>
+		</form>
+		<div id = "teamconfirm">Is this your team? <div class = "custom-control custom-radio custom-control-inline ml-2"><input type = "radio" class = "custom-control-input" name = "teamconfirm" value = "yes" id = "yes" autocomplete = "off"><label class = "custom-control-label" for = "yes">Yes</label></div><div class = "custom-control custom-radio custom-control-inline"><input type = "radio" class = "custom-control-input" name = "teamconfirm" value = "no" id = "no" autocomplete = "off"><label class = "custom-control-label" for = "no">No</label></div></div>
+		<div class = "card d-inline-block mt-2" id = "info">
+			<table>
+				<tr>
+					<td rowspan = "2"></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<hr class = "signin">
+		<form class = "signin" autocomplete = "off">
+			<p>Second, please create your account sign-in information here.</p>
+			<div class = "form-group">
+				<label for = "email">E-mail address</label>
+				<input type = "email" class = "form-control" placeholder = "Enter email" size = "40" id = "email" required>
+				<small class = "form-text text-muted">This is used for verification purposes only and is not required to login.</small>
+				<div class = "invalid-feedback" id = "email_error">
+				</div>
+			</div>
+			<div class = "form-group">
+				<label for = "email">Username</label>
+				<input type = "text" class = "form-control" placeholder = "Enter username" size = "40" id = "username">
+				<small class = "form-text text-muted">This is the username that members of your team can use to login.</small>
+				<div class = "invalid-feedback" id = "username_error">
+					Username must be at least 4 characters long.
+				</div>
+			</div>
+			<div class = "form-group">
+				<label for = "email">Password</label>
+				<input type = "password" class = "form-control" placeholder = "Enter password" size = "40" id = "password">
+				<small class = "form-text text-muted">This is the password that members of your team can use to login.</small>
+				<div class = "invalid-feedback" id = "password_error">
+					Password must be at least 6 characters long.
+				</div>
+			</div>
+			<button class = "btn btn-outline-dark btn-sm" id = "register">Continue</button>
+		</form>
+		<hr class = "verify">
+		<div class = "verify">
+			<p>Lastly, we need to verify your e-mail address. A code was sent to <span id = "address"></span>; please enter it below.</p>
+			<form class = "form-inline" id = "form" autocomplete = "off">
+				Verification code: <input type = "text" id = "code" class = "form-control form-control-sm mx-2" placeholder = "XXXXXX">
+			</form>
+			<br>
+			<button class = "btn btn-primary" id = "verify" form = "form">Verify and Register</button>
+		</div>
+	</div>
+	<script src = "resources/jquery.min.js"></script>
+	<script src = "resources/popper.min.js"></script>
+	<script src = "resources/bootstrap/js/bootstrap.min.js"></script>
+	<script src = "https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+	<script src = "register.js"></script>
+</body>
+</html>

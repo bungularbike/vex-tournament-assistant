@@ -8,19 +8,32 @@
 <body>
 	<div class = "card" style = "display: none">
 		<div class = "card-body">
-			<h5 class = "card-title">Welcome to VEX Tournament Assistant</h5>
-			<hr>
+			<h5 class = "card-title">VEX Tournament Assistant</h5>
+			<hr class = "mb-4">
 			<form>
-				<div class = "form-group">
+				<div class = "form-group input-group">
 					<input type = "text" class = "form-control" placeholder = "ID" id = "username">
+					<div class = "input-group-append">
+						<button class = "btn btn-outline-secondary" type = "button" data-toggle = "tooltip" data-placement = "right" data-html = true title = "Your ID is either:<br><ul><li>The numeric component of your school team number, e.g. 936 (if your organization uses a shared account)</li><li>Your full team number, e.g. 936A (if your organization has separate team accounts)</li></ul>">?</button>
+					</div>
 				</div>
-				<div class = "form-group">
+				<div class = "form-group input-group">
 					<input type = "password" class = "form-control" placeholder = "Password" id = "password">
+					<div class = "input-group-append">
+						<button class = "btn btn-outline-secondary" type = "button" data-toggle = "tooltip" data-placement = "right" data-html = true title = "Forgot password? <b>Click here.</b>">?</button>
+					</div>
 				</div>
+				<div class = "custom-control custom-checkbox">
+					<input type = "checkbox" class = "custom-control-input" id = "remember">
+					<label class = "custom-control-label" for = "remember">Remember me</label>
+				</div>
+				<br>
 				<button class = "btn btn-primary">Login</button>
 			</form>
-			<br>
-			<small>Made by Jaxk. Team 936A, Hong Kong</small>
+		</div>
+		<div class = "card-footer pt-3">
+			<p class = "mb-2"><a href = "register.html" class = "btn btn-sm btn-info mr-3">Register</a><button class = "btn btn-sm btn-secondary">Quick Scout</button></p>
+			<small>v0.9. Made by Jaxk of 936A, Hong Kong.</small>
 		</div>
 	</div>
 	<script src = "resources/jquery.min.js"></script>

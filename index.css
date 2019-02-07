@@ -18,7 +18,6 @@ body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	padding: 1%;
 	padding-bottom: 0%;
 	text-align: center;
 	width: 50%;
@@ -32,11 +31,26 @@ h5 {
 
 }
 
+.input-group {
+
+	width: 50% !important;
+	margin: 0 auto;
+
+}
+
 #username, #password {
 
 	display: inline-block;
 	width: 50% !important;
 	margin-bottom: 0rem;
+	z-index: 5;
+
+}
+
+.btn-outline-secondary {
+
+	border: 1px solid #ced4da !important;
+	z-index: 99 !important;
 
 }
 
@@ -44,5 +58,25 @@ img {
 
 	width: 3%;
 	height: 3%;
+
+}
+
+ul {
+
+	padding-left: 0;
+	margin-bottom: 0.25rem !important;
+	list-style-position: inside;
+
+}
+
+li {
+
+	text-indent: -4px;
+
+}
+
+.btn-sm {
+
+	padding-top: 0.2rem !important;
 
 }
