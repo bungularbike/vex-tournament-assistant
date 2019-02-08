@@ -98,7 +98,6 @@ document.getElementsByTagName("form")[0].onsubmit = function(event) {
 				}
 				login = false;
 				$("button").removeAttr("disabled");
-				$("#username").addClass("is-invalid");
 
 			});
 

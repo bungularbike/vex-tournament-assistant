@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VEX Tournament Assistant</title>
+	<link href = "settings.css" type = "text/css" rel = "stylesheet">
+	<link href = "resources/bootstrap/css/bootstrap.min.css" type = "text/css" rel = "stylesheet">
+</head>
+<body>
+	<nav class = "navbar sticky-top navbar-light bg-light navbar-expand">
+		<span class = "navbar-brand mb-0 h1">VEX Tournament Assistant</span>
+		<div class = "collapse navbar-collapse">
+			<ul class = "navbar-nav mr-auto">
+				<li class = "nav-item">
+					<a class = "nav-link" href = "dashboard.html">Dashboard</a>
+				</li>
+				<li class = "nav-item">
+					<a class = "nav-link" href = "teams.html">Teams</a>
+				</li>
+				<li class = "nav-item">
+					<a class = "nav-link" href = "notes.html">Notes</a>
+				</li>
+				<li class = "nav-item">
+					<a class = "nav-link" href = "stats.html">Stats</a>
+				</li>
+			</ul>
+			<ul class = "navbar-nav ml-auto">
+				<li class = "nav-item dropdown active">
+					<a class = "nav-link dropdown-toggle" href = "#" data-toggle = "dropdown" id = "user"></a>
+					<div class = "dropdown-menu">
+						<a class = "dropdown-item active" href = "#">Settings</a>
+						<a class = "dropdown-item" href = "#" onclick = "signout()">Sign out</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class = "container-fluid p-5">
+		<h2 class = "mb-4">Settings</h2>
+		<h4>Verify e-mail address</h4>
+		<p class = "verify">Loading...</p>
+		<div class = "verify">
+			<div class = "alert alert-warning my-2 d-inline-block">
+				Your e-mail address has not been verified. Please verify it in order to use VEX Tournament Assistant.
+			</div>
+			<p class = "my-2">A code was sent to <span id = "verify_address"></span>; please enter it below.</p>
+			<form class = "form-inline" id = "verify" autocomplete = "off">
+				Verification code: <input type = "text" id = "code" class = "form-control form-control-sm mx-2" placeholder = "XXXXXX">
+				<button id = "search" class = "btn btn-outline-dark btn-sm">Verify</button>
+			</form>
+			<br>
+			<p>If you did not receive a code (remember to check your junk/spam), <a href = "#" onclick = "code()">re-send it</a>. You can also change your e-mail addresss below if needed.</p>
+		</div>
+		<h4>Change username</h4>
+		<form class = "form-inline" id = "username" autocomplete = "off">
+			New username: <input type = "text" id = "name" class = "form-control form-control-sm mx-2" placeholder = "Enter username" required>
+			<button class = "btn btn-outline-dark btn-sm">Change</button>
+			<div class = "invalid-feedback">
+				Username must be at least 6 characters long.
+			</div>
+		</form>
+		<p></p>
+		<h4>Change VEX team number</h4>
+		<form class = "form-inline" id = "team" autocomplete = "off">
+			<input type = "text" id = "number" class = "form-control form-control-sm mr-2" placeholder = "Enter team number">
+			<button class = "btn btn-outline-dark btn-sm">Change</button>
+		</form>
+		<p></p>
+		<h4>Change e-mail address</h4>
+		<p>After changing your e-mail address, you will need to re-login and verify it.<br>A notification will be sent to the old e-mail address.</p>
+		<form class = "form-inline" id = "email" autocomplete = "off">
+			New e-mail address: <input type = "email" id = "address" class = "form-control form-control-sm mx-2" placeholder = "Enter e-mail" required>
+			<button class = "btn btn-outline-dark btn-sm">Change</button>
+		</form>
+		<p></p>
+		<h4>Change password</h4>
+		<form id = "reset" autocomplete = "off">
+			<div class = "form-group">
+				<label for = "old">Old password</label>
+				<input type = "password" class = "form-control" placeholder = "Enter old password" size = "30" id = "old" required>
+				<div class = "invalid-feedback" id = "old_error">
+					Invalid password
+				</div>
+			</div>
+			<div class = "form-group">
+				<label for = "new">New password</label>
+				<input type = "password" class = "form-control" placeholder = "Enter new password" size = "30" id = "new" required>
+				<div class = "invalid-feedback" id = "new_error">
+					Password must be at least 6 characters long.
+				</div>
+			</div>
+			<button class = "btn btn-outline-dark btn-sm">Change</button>
+		</form>
+		<p></p>
+		<h4>Delete account</h4>
+		<p>Once you delete your account, your data is permanently erased.</p>
+		<button class = "btn btn-danger" disabled>Delete <span id = "delete"></button>
+	</div>
+	<script src = "resources/jquery.min.js"></script>
+	<script src = "resources/popper.min.js"></script>
+	<script src = "resources/bootstrap/js/bootstrap.min.js"></script>
+	<script src = "https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+	<script src = "settings.js"></script>
+</body>
+</html>
