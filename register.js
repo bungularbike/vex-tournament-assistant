@@ -10,6 +10,48 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var login = false;
+firebase.auth().onAuthStateChanged(function(account) {
+
+	if (account && !login) {
+
+		$("#teamsearch").remove();
+		$("p.already").html("<div class = 'alert alert-primary'>You're already signed in as <span class = 'already'></span>. You can go to your <a href = 'dashboard.html'><strong>dashboard</strong></a> or <a href = '#' onclick = 'signOut()'><strong>sign out</strong></a>.</div>");
+		$.ajax({
+
+			method: "GET",
+			url: "https://vexta.herokuapp.com/user?uid=" + account.uid,
+			dataType: "json"
+
+		}).done(function(data) {
+
+			$("span.already").html(data.username);
+
+		}).fail(function() {
+
+			$("span.already").html(account.email);
+
+		});
+
+	}
+
+});
+
+function signOut() {
+
+	$("p.already .alert").html("Signing out...");
+	firebase.auth().signOut().then(function() {
+
+		setTimeout(function() { location.reload() }, 1000);
+
+	}).catch(function(error) {
+
+		alert("An error occurred while signing out: " + error.message);
+
+	});
+
+}
+
 $("#team").on("keydown", function() {
 
 	$(".is-invalid").removeClass("is-invalid");
@@ -120,6 +162,7 @@ $("form.signin").submit(function() {
 		$(".signin .form-control, #register").attr("disabled", "true");
 		$("#password_error").removeClass("invalid");
 		$("#register").html("Loading...");
+		login = true;
 		$.ajax({
 
 			method: "POST",
@@ -195,10 +238,18 @@ $(".verify form").submit(function() {
 
 		}).done(function() {
 
-			$("#verify").html("Success!");
-			$("div.verify").append("<br><div class = 'alert alert-success mt-5 mb-0 text-center'>Your VEX Tournament Assistant account <strong>" + $("#username").val() + "</strong> has been successfully created. You will be redirected to the dashboard shortly.</div>");
-			$("html, body").animate({ scrollTop: $(document).height() - $(window).height() }, "swing");
-			setTimeout(function() { window.open("dashboard.html", "_self") }, 5000);
+			firebase.auth().signInWithEmailAndPassword($("#email").val(), $("#password").val()).then(function() {
+
+				$("#verify").html("Success!");
+				$("div.verify").append("<br><div class = 'alert alert-success mt-5 mb-0 text-center'>Your VEX Tournament Assistant account <strong>" + $("#username").val() + "</strong> has been successfully created. You will be redirected to the dashboard shortly.</div>");
+				$("html, body").animate({ scrollTop: $(document).height() - $(window).height() }, "swing");
+				setTimeout(function() { window.open("dashboard.html", "_self") }, 5000);
+
+			}).catch(function(error) {
+
+				alert("An error occurred while logging you in: " + error.message);
+
+			});
 
 		}).fail(function(jqxhr) {
 

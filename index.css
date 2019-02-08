@@ -47,6 +47,18 @@ h5 {
 
 }
 
+#password.is-invalid {
+
+	z-index: 100;
+
+}
+
+.input-group-append button:active {
+
+	z-index: 200 !important;
+
+}
+
 .btn-outline-secondary {
 
 	border: 1px solid #ced4da !important;
@@ -78,5 +90,17 @@ li {
 .btn-sm {
 
 	padding-top: 0.2rem !important;
+
+}
+
+.invalid-feedback:not(.invalid) {
+
+	display: none !important;
+
+}
+
+.invalid {
+
+	display: block !important;
 
 }

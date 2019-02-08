@@ -21,7 +21,7 @@ firebase.auth().onAuthStateChanged(function(account) {
 
 	if (account && !login) {
 
-		window.open("teams.html", "_self");
+		window.open("dashboard.html", "_self");
 
 	}
 
@@ -39,7 +39,6 @@ $(".input-group button").on("click", function() {
 
 });
 
-/*
 document.getElementsByTagName("form")[0].onsubmit = function(event) {
 
 	event.preventDefault();
@@ -59,41 +58,61 @@ document.getElementsByTagName("form")[0].onsubmit = function(event) {
 
 	} else {
 
-		$("button").attr("disabled", "true");
+		$("form > button").attr("disabled", "true");
 		$("#username, #password").removeClass("is-invalid");
-		var team = $("input[name='team']:checked").val();
+		$(".invalid").removeClass("invalid");
+		var username = $("input[name='team']:checked").val();
 		login = true;
-		firebase.auth().signInWithEmailAndPassword($("#username").val() + "@hkis.edu.hk", $("#password").val()).then(function() {
+		$.ajax({
 
-			firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-			$(".background:nth-child(" + teams.indexOf(team) + ")").animate({ height: "100%" }, 800);
-    		$(".background:not(:nth-child(" + teams.indexOf(team) + "))").animate({ height: "0%" }, 800);
-			setTimeout(function() { window.open("teams.html", "_self") }, 1600);
+			method: "GET",
+			url: "https://vexta.herokuapp.com/login?username=" + $("#username").val()
 
-		}).catch(function(error) {
+		}).done(function(jqxhr) {
+
+			firebase.auth().signInWithEmailAndPassword(jqxhr, $("#password").val()).then(function() {
+
+				if ($("#remember").is(":checked")) {
+
+					firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+				} else {
+
+					firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+
+				}
+				$("form > button").html("Success!");
+				setTimeout(function() { window.open("dashboard.html", "_self") }, 2000);
+
+			}).catch(function(error) {
+
+				if (error.code == "auth/wrong-password") {
+
+					$("#password").addClass("is-invalid");
+
+				} else {
+
+					$(".invalid-feedback").html("An error occurred while logging in: " + error.message);
+					$(".invalid-feedback").addClass("invalid");
+
+				}
+				login = false;
+				$("button").removeAttr("disabled");
+				$("#username").addClass("is-invalid");
+
+			});
+
+		}).fail(function(jqxhr) {
 
 			login = false;
 			$("button").removeAttr("disabled");
-			if (error.code == "auth/wrong-password") {
-
-				$("#password").addClass("is-invalid");
-
-			} else if (error.code == "auth/user-not-found") {
-
-				$("#username").addClass("is-invalid");
-
-			} else {
-
-				alert("An error occurred (" + error.code + "): " + error.message);
-
-			}
+			$("#username").addClass("is-invalid");
 
 		});
 
 	}
 
 }
-*/
 
 $("input[type=radio]").click(function() {
 
