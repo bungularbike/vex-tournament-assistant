@@ -39,9 +39,16 @@ $(".input-group button").on("click", function() {
 
 });
 
+var reset = false;
 document.getElementsByTagName("form")[0].onsubmit = function(event) {
 
 	event.preventDefault();
+	if (reset) {
+
+		sendReset();
+		return;
+
+	}
 	if ($("#username").val().length < 4) {
 
 		$("#username").addClass("is-invalid");
@@ -128,3 +135,43 @@ $("#password").on("input", function() {
 	}
 
 });
+
+function resetPassword() {
+
+	$("#username").removeClass("is-invalid");
+	$("#username").attr("placeholder", "E-mail address");
+	$("#username").attr("type", "email");
+	$("#username").attr("required", "true");
+	$("#username").val("");
+	$(".input-group").html("<p class = 'mb-0'>Click \"Reset Password\" to send a password reset e-mail to the address listed above.</p>");
+	$(".tooltip, br").remove();
+	$(".custom-checkbox").remove();
+	$(".btn-primary").html("Reset Password");
+	reset = true;
+	$("form").append("<br><button class = 'btn btn-sm btn-outline-dark mt-3' onclick = 'javascript:location.reload()'>Back</button>")
+
+}
+
+function sendReset() {
+
+	$("#username").removeClass("is-invalid");
+	$("#username, .btn-primary").attr("disabled", "true");
+	$(".btn-primary").html("Loading...");
+	$.ajax({
+
+		url: "https://vexta.herokuapp.com/sendreset?email=" + $("#username").val()
+
+	}).done(function() {
+
+		$(".btn-primary").html("Done!");
+		$(".input-group p").html("A password reset link was sent to " + $("#username").val() + ". You can close this page now.");
+
+	}).fail(function(jqxhr) {
+
+		$("#username").addClass("is-invalid");
+		$("#username, .btn-primary").removeAttr("disabled");
+		$(".btn-primary").html("Reset Password");
+
+	});
+
+}
