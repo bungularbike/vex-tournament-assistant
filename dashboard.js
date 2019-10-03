@@ -122,7 +122,7 @@ function getEvents() {
 
 	$.ajax({
 
-		url: "http://api.vexdb.io/v1/get_events?season=current&team=" + team,
+		url: "https://api.vexdb.io/v1/get_events?season=current&team=" + team,
 		dataType: "json"
 
 	}).done(function(jqxhr) {
@@ -189,7 +189,7 @@ function loadEvent(sku) {
 	$("#event_" + sku).addClass("active");
 	$.ajax({
 
-		url: "http://api.vexdb.io/v1/get_events?sku=" + event,
+		url: "https://api.vexdb.io/v1/get_events?sku=" + event,
 		dataType: "json"
 
 	}).done(function(jqxhr) {

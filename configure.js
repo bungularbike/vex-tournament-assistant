@@ -99,7 +99,7 @@ function getEvent(sku) {
 
 	$.ajax({
 
-		url: "http://api.vexdb.io/v1/get_events?sku=" + sku,
+		url: "https://api.vexdb.io/v1/get_events?sku=" + sku,
 		dataType: "json"
 
 	}).done(function(jqxhr) {
@@ -178,7 +178,7 @@ function addTeam() {
 		$("#addteam input, button").attr("disabled", "true");
 		$.ajax({
 
-			url: "http://api.vexdb.io/v1/get_teams?team=" + $("#addteam input").val(),
+			url: "https://api.vexdb.io/v1/get_teams?team=" + $("#addteam input").val(),
 			dataType: "json"
 
 		}).done(function(jqxhr) {
@@ -231,7 +231,7 @@ function autoAdd() {
 	manual = [];
 	$.ajax({
 
-		url: "http://api.vexdb.io/v1/get_teams?sku=" + sku,
+		url: "https://api.vexdb.io/v1/get_teams?sku=" + sku,
 		dataType: "json"
 
 	}).done(function(jqxhr) {
@@ -271,7 +271,7 @@ function checkTeams(sku) {
 
 	$.ajax({
 
-		url: "http://api.vexdb.io/v1/get_teams?sku=" + sku,
+		url: "https://api.vexdb.io/v1/get_teams?sku=" + sku,
 		dataType: "json"
 
 	}).done(function(jqxhr) {

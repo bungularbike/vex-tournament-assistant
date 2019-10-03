@@ -148,7 +148,7 @@ function resetPassword() {
 	$(".custom-checkbox").remove();
 	$(".btn-primary").html("Reset Password");
 	reset = true;
-	$("form").append("<br><button class = 'btn btn-sm btn-outline-dark mt-3' onclick = 'javascript:location.reload()'>Back</button>")
+	$("form").append("<br><button type = 'button' class = 'btn btn-sm btn-outline-dark mt-3' onclick = 'javascript:location.reload()'>Back</button>")
 
 }
 
