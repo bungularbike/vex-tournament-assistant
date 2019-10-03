@@ -210,7 +210,7 @@ $("#team").submit(function() {
 					data: JSON.stringify({ 
 
 						username: username,
-						team: $("#number").val()
+						team: $("#number").val().toUpperCase()
 
 					})
 

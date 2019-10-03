@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VEX Tournament Assistant</title>
+	<link href = "configure.css" type = "text/css" rel = "stylesheet">
+	<link href = "resources/bootstrap/css/bootstrap.min.css" type = "text/css" rel = "stylesheet">
+</head>
+<body>
+	<div class = "container-fluid p-5 text-center">
+		<h1>Event Configuration Wizard</h1>
+		<p class = "mt-3" id = "loading">Loading...</p>
+		<table id = "manual" class = "d-none table">
+			<thead>
+				<tr>
+					<th scope = "col">Team Number</th>
+					<th scope = "col">Name</th>
+					<th scope = "col">Organization</th>
+					<th scope = "col">Location</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+			</tbody>
+		</table>
+	</div>
+	<button class = "btn btn-secondary btn-sm" id = "cancel">cancel</button>
+	<script src = "resources/jquery.min.js"></script>
+	<script src = "resources/popper.min.js"></script>
+	<script src = "resources/bootstrap/js/bootstrap.min.js"></script>
+	<script src = "https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+	<script src = "configure.js"></script>
+</body>
+</html>
